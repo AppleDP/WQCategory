@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "WQExtension.h"
+#import "WQObject.h"
 
 @interface ViewController ()
 
@@ -16,14 +18,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    NSString *str = [[NSString alloc] init];
+    NSString *str0 = [[NSString alloc] init];
+    NSLog(@"str: %@ -- str0: %@ -- str: %@", str, str0, str.class);
+    if ([str isEqualToString:str0]) {
+        NSLog(@"相等");
+    }else {
+        NSLog(@"不等");
+    }
+    WQObject *object = [[WQObject alloc] init];
+    int i = 0;
+    NSNumber *j = @(1);
+    [object performSelector:@selector(func0:j:) arguments:&i, &j, nil];
+    
+//    func(10, 20);
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 @end
