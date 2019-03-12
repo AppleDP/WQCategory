@@ -8,22 +8,54 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum{
+    WQBarCode,     // 条形码
+    WQQRCode,      // 二维码
+}WQCodeType;
+
 NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (WQExtension)
 /**
  * 生成一张 color 色的 image
  */
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
-
++ (UIImage *)wq_imageWithColor:(UIColor *)color
+                          size:(CGSize)size;
 /**
  * 修改图片颜色
  */
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor;
-- (UIImage *)imageWithGradientTintColor:(UIColor *)tintColor;
+- (UIImage *)wq_imageWithTintColor:(UIColor *)tintColor;
+- (UIImage *)wq_imageWithGradientTintColor:(UIColor *)tintColor;
 
 /**
  * 修改图片大小
  */
-- (UIImage *)scaleToSize:(CGSize)size;
+- (UIImage *)wq_scaleToSize:(CGSize)size;
+
+/**
+ * 在图片上添加图片
+ *
+ * @param image 上层图片
+ * @param rect 上层图片位置
+ */
+- (UIImage *)wq_insertImage:(UIImage *)image
+                       rect:(CGRect)rect;
+/**
+ * 生成二维码或条形码
+ *
+ *  @param codeType  生成类型
+ *  @param str       二维码、条形码内容
+ *  @param size      二维码、条形码大小
+ *  @param color     二维码、条形码颜色
+ *  @param watermark 二维码、条形码水印图
+ *  @param rect      水印图在二维码、条形码中的位置（在 watermark ！= nil 时可有效）
+ *
+ *  @return 二维码、条形码图片
+ */
++ (UIImage *)wq_codeCreateWithType:(WQCodeType)codeType
+                            String:(NSString *)str
+                              size:(CGSize)size
+                             color:(nullable UIColor *)color
+                         watermark:(nullable UIImage *)watermark
+                          position:(CGRect)rect;
 @end
 NS_ASSUME_NONNULL_END

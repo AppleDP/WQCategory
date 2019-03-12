@@ -45,7 +45,7 @@ static const unsigned short crc16table[] =
 };
 
 @implementation NSData (WQExtension)
-- (NSData *)crc32 {
+- (NSData *)wq_crc32 {
     uint32_t *table = malloc(sizeof(uint32_t) * 256);
     uint32_t crc = 0xffffffff;
     uint8_t *bytes = (uint8_t *)[self bytes];
@@ -65,22 +65,45 @@ static const unsigned short crc16table[] =
     crc ^= 0xffffffff;
     free(table);
     int32_t swapped = CFSwapInt32LittleToHost(crc);
-    char *a = (char*) &swapped;
-    NSData *crcD = [NSData dataWithBytes:a
-                                  length:sizeof(4)];
+    char *a = (char*)&swapped;
+    NSData *crcD = [NSData dataWithBytes:a length:sizeof(4)];
     return crcD;
 }
 
-- (ushort)crc16 {
+- (ushort)wq_crc16 {
     unsigned int crc;
     crc = 0xFFFF;
     uint8_t byteArray[[self length]];
     [self getBytes:&byteArray length:self.length];
     for (int i = 0; i<[self length]; i++) {
         Byte byte = byteArray[i];
-        crc = (crc >> 8) ^ crc16table[(crc^ byte) & 0xFF];
+        crc = (crc>>8)^crc16table[(crc^byte)&0xFF];
     }
     return crc;
     
+}
+
++ (instancetype)wq_dataWithHexString:(NSString *)string {
+    if (!string || [string length] == 0) {
+        return nil;
+    }
+    NSMutableData *hexData = [[NSMutableData alloc] initWithCapacity:8];
+    NSRange range;
+    if ([string length] % 2 == 0) {
+        range = NSMakeRange(0, 2);
+    } else {
+        range = NSMakeRange(0, 1);
+    }
+    for (NSInteger i = range.location; i < [string length]; i += 2) {
+        unsigned int anInt;
+        NSString *hexCharStr = [string substringWithRange:range];
+        NSScanner *scanner = [[NSScanner alloc] initWithString:hexCharStr];
+        [scanner scanHexInt:&anInt];
+        NSData *entity = [[NSData alloc] initWithBytes:&anInt length:1];
+        [hexData appendData:entity];
+        range.location += range.length;
+        range.length = 2;
+    }
+    return hexData;
 }
 @end

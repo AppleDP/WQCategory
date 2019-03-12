@@ -9,7 +9,7 @@
 #import "UILabel+WQExtension.h"
 
 @implementation UILabel (WQExtension)
-- (void)alignTop {
+- (void)wq_alignTop {
     CGSize fontSize = [self.text sizeWithAttributes:@{NSFontAttributeName : self.font}];
     double finalHeight = fontSize.height * self.numberOfLines;
     double finalWidth = self.frame.size.width;
@@ -22,7 +22,7 @@
         self.text = [self.text stringByAppendingString:@"\n "];
 }
 
-- (void)alignBottom {
+- (void)wq_alignBottom {
     CGSize fontSize = [self.text sizeWithAttributes:@{NSFontAttributeName : self.font}];
     double finalHeight = fontSize.height * self.numberOfLines;
     double finalWidth = self.frame.size.width;

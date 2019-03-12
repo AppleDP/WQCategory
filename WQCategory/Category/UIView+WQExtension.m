@@ -10,85 +10,85 @@
 
 @implementation UIView (WQExtension)
 #pragma mark -- View Frame 
-- (void)setX:(CGFloat)x {
+- (void)setWq_x:(CGFloat)wq_x {
     CGRect rect = self.frame;
-    rect.origin.x = x;
+    rect.origin.x = wq_x;
     self.frame = rect;
 }
-- (CGFloat)x {
+- (CGFloat)wq_x {
     return self.frame.origin.x;
 }
 
-- (void)setMaxX:(CGFloat)maxX {
+- (void)setWq_maxX:(CGFloat)wq_maxX {
     CGRect rect = self.frame;
-    rect.origin.x = maxX - self.frame.size.width;
+    rect.origin.x = wq_maxX - self.frame.size.width;
     self.frame = rect;
 }
-- (CGFloat)maxX {
+- (CGFloat)wq_maxX {
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (void)setMaxY:(CGFloat)maxY {
+- (void)setWq_maxY:(CGFloat)wq_maxY {
     CGRect rect = self.frame;
-    rect.origin.y = maxY - self.frame.size.height;
+    rect.origin.y = wq_maxY - self.frame.size.height;
     self.frame = rect;
 }
-- (CGFloat)maxY {
+- (CGFloat)wq_maxY {
     return self.frame.origin.y + self.frame.size.height;
 }
 
-- (void)setY:(CGFloat)y {
+- (void)setWq_y:(CGFloat)wq_y {
     CGRect rect = self.frame;
-    rect.origin.y = y;
+    rect.origin.y = wq_y;
     self.frame = rect;
 }
--(CGFloat)y {
+-(CGFloat)wq_y {
     return self.frame.origin.y;
 }
 
-- (void)setCenterX:(CGFloat)centerX {
+- (void)setWq_centerX:(CGFloat)wq_centerX {
     CGPoint center = self.center;
-    center.x = centerX;
+    center.x = wq_centerX;
     self.center = center;
 }
-- (CGFloat)centerX {
+- (CGFloat)wq_centerX {
     return self.center.x;
 }
 
-- (void)setCenterY:(CGFloat)centerY {
+- (void)setWq_centerY:(CGFloat)wq_centerY {
     CGPoint center = self.center;
-    center.y = centerY;
+    center.y = wq_centerY;
     self.center = center;
 }
-- (CGFloat)centerY {
+- (CGFloat)wq_centerY {
     return self.center.y;
 }
 
-- (void)setWidth:(CGFloat)width {
+- (void)setWq_width:(CGFloat)wq_width {
     CGRect rect = self.frame;
-    rect.size.width = width;
+    rect.size.width = wq_width;
     self.frame = rect;
 }
-- (CGFloat)width {
+- (CGFloat)wq_width {
     return self.frame.size.width;
 }
 
-- (void)setHeight:(CGFloat)height {
+- (void)setWq_height:(CGFloat)wq_height {
     CGRect rect = self.frame;
-    rect.size.height = height;
+    rect.size.height = wq_height;
     self.frame = rect;
 }
-- (CGFloat)height {
+- (CGFloat)wq_height {
     return self.frame.size.height;
 }
 
-- (void)setSize:(CGSize)size {
+- (void)setWq_size:(CGSize)wq_size {
     CGRect rect = self.frame;
-    rect.size.width = size.width;
-    rect.size.height = size.height;
+    rect.size.width = wq_size.width;
+    rect.size.height = wq_size.height;
     self.frame = rect;
 }
-- (CGSize)size {
+- (CGSize)wq_size {
     return self.frame.size;
 }
 @end

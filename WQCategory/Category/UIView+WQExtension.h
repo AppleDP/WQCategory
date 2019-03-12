@@ -13,14 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * View Frame
  */
-@property (nonatomic, assign) CGFloat x;
-@property (nonatomic, assign) CGFloat y;
-@property (nonatomic, assign) CGFloat maxX;
-@property (nonatomic, assign) CGFloat maxY;
-@property (nonatomic, assign) CGFloat centerX;
-@property (nonatomic, assign) CGFloat centerY;
-@property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) CGFloat height;
-@property (nonatomic, assign) CGSize size;
+@property (nonatomic, assign) CGFloat wq_x;
+@property (nonatomic, assign) CGFloat wq_y;
+@property (nonatomic, assign) CGFloat wq_maxX;
+@property (nonatomic, assign) CGFloat wq_maxY;
+@property (nonatomic, assign) CGFloat wq_centerX;
+@property (nonatomic, assign) CGFloat wq_centerY;
+@property (nonatomic, assign) CGFloat wq_width;
+@property (nonatomic, assign) CGFloat wq_height;
+@property (nonatomic, assign) CGSize wq_size;
 @end
 NS_ASSUME_NONNULL_END

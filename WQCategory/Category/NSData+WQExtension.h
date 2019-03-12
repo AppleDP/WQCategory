@@ -13,11 +13,20 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * CRC32 校验
  */
-- (NSData *)crc32;
+- (NSData *)wq_crc32;
 
 /**
  * CRC16 校验
  */
-- (ushort)crc16;
+- (ushort)wq_crc16;
+
+/**
+ * Hex 字符串转 NSData
+ *
+ * @param string Hex 字符串
+ *
+ * @return Hex 字符串转换后的 NSData
+ */
++ (instancetype)wq_dataWithHexString:(NSString *)string;
 @end
 NS_ASSUME_NONNULL_END

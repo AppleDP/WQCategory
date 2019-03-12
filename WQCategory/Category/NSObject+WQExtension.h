@@ -15,7 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param classString 类名
  */
-- (BOOL)isKindOfClassWithString:(NSString *)classString;
+- (BOOL)wq_isKindOfClassWithString:(NSString *)classString;
+
+/**
+ * 判断是否该类本类
+ */
+- (BOOL)wq_isMemberOfClassWithString:(NSString *)classString;
 
 /**
  * 执行 selector 语句，可有多个参数，selector 不存在 或 传入参数错误 时抛出异常
@@ -23,8 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param aSelector SEL 方法
  * @param arguments 参数地址列表
  */
-- (nullable id)performSelector:(SEL)aSelector
-                     arguments:(nullable void *)arguments,... NS_REQUIRES_NIL_TERMINATION;
+- (nullable id)wq_performSelector:(SEL)aSelector
+                        arguments:(nullable void *)arguments,... NS_REQUIRES_NIL_TERMINATION;
 @end
 NS_ASSUME_NONNULL_END
-

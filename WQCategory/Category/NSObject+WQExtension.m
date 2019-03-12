@@ -9,13 +9,18 @@
 #import "NSObject+WQExtension.h"
 
 @implementation NSObject (WQExtension)
-- (BOOL)isKindOfClassWithString:(NSString *)classString {
+- (BOOL)wq_isKindOfClassWithString:(NSString *)classString {
     Class c = NSClassFromString(classString);
     return [self isKindOfClass:c];
 }
 
-- (nullable id)performSelector:(SEL)aSelector
-                     arguments:(void *)arguments,... {
+- (BOOL)wq_isMemberOfClassWithString:(NSString *)classString {
+    Class c = NSClassFromString(classString);
+    return [self isMemberOfClass:c];
+}
+
+- (nullable id)wq_performSelector:(SEL)aSelector
+                        arguments:(void *)arguments,... {
     NSMethodSignature *signature = [[self class] instanceMethodSignatureForSelector:aSelector];
     if (signature) {
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];

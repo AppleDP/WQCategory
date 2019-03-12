@@ -29,8 +29,8 @@
     WQObject *object = [[WQObject alloc] init];
     int i = 0;
     NSNumber *j = @(1);
-    [object performSelector:@selector(func0:j:) arguments:&i, &j, nil];
-    
+    [object wq_performSelector:@selector(func0:j:) arguments:&i, &j, nil];
+
 //    func(10, 20);
 }
 @end

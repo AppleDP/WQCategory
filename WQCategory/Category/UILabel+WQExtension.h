@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 文字顶部对齐
  */
-- (void)alignTop;
+- (void)wq_alignTop;
 
 /**
  * 文字底部对齐
  */
-- (void)alignBottom;
+- (void)wq_alignBottom;
 @end
 NS_ASSUME_NONNULL_END
