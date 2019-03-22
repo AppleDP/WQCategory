@@ -52,9 +52,9 @@
     return [self wq_scaleToSize:CGSizeMake(width, fixHeight)];
 }
 
-- (UIImage *)wq_ratioWidthWithHeitht:(CGFloat)heigth {
-    CGFloat fixWidth = self.size.width*heigth/self.size.height;
-    return [self wq_scaleToSize:CGSizeMake(fixWidth, heigth)];
+- (UIImage *)wq_ratioWidthWithHeight:(CGFloat)height {
+    CGFloat fixWidth = self.size.width*height/self.size.height;
+    return [self wq_scaleToSize:CGSizeMake(fixWidth, height)];
 }
 
 - (UIImage *)wq_insertImage:(UIImage *)image

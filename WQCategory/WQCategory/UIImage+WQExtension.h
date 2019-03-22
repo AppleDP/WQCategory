@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param height 修改后高
  */
-- (UIImage *)wq_ratioWidthWithHeitht:(CGFloat)heigth;
+- (UIImage *)wq_ratioWidthWithHeight:(CGFloat)height;
 
 /**
  * 在图片上添加图片
