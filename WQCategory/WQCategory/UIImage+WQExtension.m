@@ -47,6 +47,16 @@
     return scaledImage;
 }
 
+- (UIImage *)wq_ratioHeightWithWidth:(CGFloat)width {
+    CGFloat fixHeight = self.size.height*width/self.size.width;
+    return [self wq_scaleToSize:CGSizeMake(width, fixHeight)];
+}
+
+- (UIImage *)wq_ratioWidthWithHeitht:(CGFloat)heigth {
+    CGFloat fixWidth = self.size.width*heigth/self.size.height;
+    return [self wq_scaleToSize:CGSizeMake(fixWidth, heigth)];
+}
+
 - (UIImage *)wq_insertImage:(UIImage *)image
                        rect:(CGRect)rect {
     UIGraphicsBeginImageContext(self.size);

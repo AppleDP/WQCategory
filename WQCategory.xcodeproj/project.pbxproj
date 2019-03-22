@@ -132,7 +132,7 @@
 		8108EC43205FE4E400062BAB /* WQCategory */ = {
 			isa = PBXGroup;
 			children = (
-				8108EC7A205FE53700062BAB /* Category */,
+				8108EC7A205FE53700062BAB /* WQCategory */,
 				8108EC77205FE4EC00062BAB /* Other */,
 				8108EC44205FE4E400062BAB /* Supporting Files */,
 			);
@@ -182,7 +182,7 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
-		8108EC7A205FE53700062BAB /* Category */ = {
+		8108EC7A205FE53700062BAB /* WQCategory */ = {
 			isa = PBXGroup;
 			children = (
 				81797AC020B39A8800EC8DA9 /* WQExtension.h */,
@@ -205,7 +205,7 @@
 				811E2A8A2237818A00D38CB4 /* NSNotificationCenter+WQExtension.h */,
 				811E2A8B2237818A00D38CB4 /* NSNotificationCenter+WQExtension.m */,
 			);
-			path = Category;
+			path = WQCategory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

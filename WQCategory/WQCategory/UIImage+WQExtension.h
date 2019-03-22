@@ -32,6 +32,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)wq_scaleToSize:(CGSize)size;
 
 /**
+ * 高度等比修改图片大小
+ *
+ * @param width 修改后宽
+ */
+- (UIImage *)wq_ratioHeightWithWidth:(CGFloat)width;
+
+/**
+ * 宽度等比修改图片大小
+ *
+ * @param height 修改后高
+ */
+- (UIImage *)wq_ratioWidthWithHeitht:(CGFloat)heigth;
+
+/**
  * 在图片上添加图片
  *
  * @param image 上层图片
