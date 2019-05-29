@@ -9,14 +9,14 @@
 #import "UIColor+WQExtension.h"
 
 @implementation UIColor (WQExtension)
-- (void)wq_analysisColorWithRed:(int *)r
-                          green:(int *)g
-                           blue:(int *)b
+- (void)wq_analysisColorWithRed:(CGFloat *)r
+                          green:(CGFloat *)g
+                           blue:(CGFloat *)b
                           alpha:(CGFloat *)a {
     const CGFloat *components = CGColorGetComponents(self.CGColor);
-    *r = components[0]*255;
-    *g = components[1]*255;
-    *b = components[2]*255;
+    *r = components[0];
+    *g = components[1];
+    *b = components[2];
     *a = components[3];
 }
 @end

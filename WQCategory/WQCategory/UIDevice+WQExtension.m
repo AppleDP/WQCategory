@@ -13,6 +13,46 @@
 #import "UIDevice+WQExtension.h"
 
 @implementation UIDevice (WQExtension)
++ (BOOL)wq_determinMyiPhone:(WQiPhone)myPhone {
+    UIInterfaceOrientation ori = [UIApplication sharedApplication].statusBarOrientation;
+    if (ori == UIInterfaceOrientationLandscapeLeft || ori == UIInterfaceOrientationLandscapeRight) {
+        // 横屏
+        if (myPhone & is_iPhone_4) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(480, 320));
+        }else if (myPhone & is_iPhone_5SE) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(568, 320));
+        }else if (myPhone & is_iPhone_678) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(667, 375));
+        }else if (myPhone & is_iPhone_678P) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(736, 414));
+        }else if (myPhone & is_iPhone_X) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(812, 375));
+        }else if (myPhone & is_iPhone_Xr) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(1792, 828));
+        }else if (myPhone & is_iPhone_Xs_Max) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(2688, 1242));
+        }
+    }else {
+        // 竖屏
+        if (myPhone & is_iPhone_4) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(320, 480));
+        }else if (myPhone & is_iPhone_5SE) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(320, 568));
+        }else if (myPhone & is_iPhone_678) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(375, 667));
+        }else if (myPhone & is_iPhone_678P) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(414, 736));
+        }else if (myPhone & is_iPhone_X) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(375, 812));
+        }else if (myPhone & is_iPhone_Xr) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(828, 1792));
+        }else if (myPhone & is_iPhone_Xs_Max) {
+            return CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(1242, 2688));
+        }
+    }
+    return NO;
+}
+
 + (nullable NSString *)wq_getIpAddress {
     NSString *address;
     BOOL useIPv6 = NO;

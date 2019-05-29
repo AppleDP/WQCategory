@@ -59,9 +59,9 @@ NS_INLINE UIColor* wq_colorWithHsb(int h, int s, int b, int a) {
  * @pragma b 解析后 blue
  * @pragma a 解析后 alpha
  */
-- (void)wq_analysisColorWithRed:(int *)r
-                          green:(int *)g
-                           blue:(int *)b
+- (void)wq_analysisColorWithRed:(CGFloat *)r
+                          green:(CGFloat *)g
+                           blue:(CGFloat *)b
                           alpha:(CGFloat *)a;
 @end
 NS_ASSUME_NONNULL_END

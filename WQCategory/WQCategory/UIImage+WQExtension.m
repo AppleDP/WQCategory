@@ -23,57 +23,12 @@
     return image;
 }
 
-- (UIImage *)wq_imageWithTintColor:(UIColor *)tintColor {
-    return [self wq_imageWithTintColor:tintColor
-                             blendMode:kCGBlendModeDestinationIn];
-}
-
-- (UIImage *)wq_imageWithGradientTintColor:(UIColor *)tintColor {
-    return [self wq_imageWithTintColor:tintColor
-                             blendMode:kCGBlendModeOverlay];
-}
-
-- (UIImage *)wq_scaleToSize:(CGSize)size {
-    // 创建一个bitmap的context
-    // 并把它设置成为当前正在使用的context
-    UIGraphicsBeginImageContext(size);
-    // 绘制改变大小的图片
-    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    // 从当前context中创建一个改变大小后的图片
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    // 使当前的context出堆栈
-    UIGraphicsEndImageContext();
-    // 返回新的改变大小后的图片
-    return scaledImage;
-}
-
-- (UIImage *)wq_ratioHeightWithWidth:(CGFloat)width {
-    CGFloat fixHeight = self.size.height*width/self.size.width;
-    return [self wq_scaleToSize:CGSizeMake(width, fixHeight)];
-}
-
-- (UIImage *)wq_ratioWidthWithHeight:(CGFloat)height {
-    CGFloat fixWidth = self.size.width*height/self.size.height;
-    return [self wq_scaleToSize:CGSizeMake(fixWidth, height)];
-}
-
-- (UIImage *)wq_insertImage:(UIImage *)image
-                       rect:(CGRect)rect {
-    UIGraphicsBeginImageContext(self.size);
-    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
-    //四个参数为水印图片的位置
-    [image drawInRect:rect];
-    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return resultingImage;
-}
-
 + (UIImage *)wq_codeCreateWithType:(WQCodeType)codeType
-                            String:(NSString *)str
-                              size:(CGSize)size
-                             color:(UIColor *)color
-                         watermark:(UIImage *)watermark
-                          position:(CGRect)rect {
+                             String:(NSString *)str
+                               size:(CGSize)size
+                              color:(UIColor *)color
+                          watermark:(UIImage *)watermark
+                           position:(CGRect)rect {
     CGFloat red,green,blue,alpha;
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
     
@@ -120,6 +75,110 @@
         resultImg = [resultImg wq_insertImage:watermark rect:rect];
     }
     return resultImg;
+}
+
+- (NSData *)wq_losslessCompressionWithExpectSize:(NSUInteger)expectSize {
+    //先判断当前质量是否满足要求，不满足再进行压缩
+    __block NSData *finallImageData = UIImageJPEGRepresentation(self,1.0);
+    NSUInteger sizeOrigin   = finallImageData.length;
+    NSUInteger sizeOriginKB = sizeOrigin / 1024;
+    
+    if (sizeOriginKB <= expectSize) {
+        return finallImageData;
+    }
+    
+    //获取原图片宽高比
+    CGFloat sourceImageAspectRatio = self.size.width/self.size.height;
+    //先调整分辨率
+    CGSize defaultSize = CGSizeMake(1024, 1024/sourceImageAspectRatio);
+    UIImage *newImage = [self newSizeImage:defaultSize image:self];
+    
+    finallImageData = UIImageJPEGRepresentation(newImage,1.0);
+    
+    //保存压缩系数
+    NSMutableArray *compressionQualityArr = [NSMutableArray array];
+    CGFloat avg   = 1.0/250;
+    CGFloat value = avg;
+    for (int i = 250; i >= 1; i--) {
+        value = i*avg;
+        [compressionQualityArr addObject:@(value)];
+    }
+    
+    /*
+     调整大小
+     说明：压缩系数数组compressionQualityArr是从大到小存储。
+     */
+    //思路：使用二分法搜索
+    __block NSData *canCompressMinData = [NSData data];//当无法压缩到指定大小时，用于存储当前能够压缩到的最小值数据。
+    [self halfFuntion:compressionQualityArr image:newImage sourceData:finallImageData maxSize:expectSize resultBlock:^(NSData *finallData, NSData *tempData) {
+        finallImageData = finallData;
+        canCompressMinData = tempData;
+    }];
+    //如果还是未能压缩到指定大小，则进行降分辨率
+    while (finallImageData.length == 0) {
+        //每次降100分辨率
+        CGFloat reduceWidth = 100.0;
+        CGFloat reduceHeight = 100.0/sourceImageAspectRatio;
+        if (defaultSize.width-reduceWidth <= 0 || defaultSize.height-reduceHeight <= 0) {
+            break;
+        }
+        defaultSize = CGSizeMake(defaultSize.width-reduceWidth, defaultSize.height-reduceHeight);
+        UIImage *image = [self newSizeImage:defaultSize image:[UIImage imageWithData:UIImageJPEGRepresentation(newImage,[[compressionQualityArr lastObject] floatValue])]];
+        [self halfFuntion:compressionQualityArr image:image sourceData:UIImageJPEGRepresentation(image,1.0) maxSize:expectSize resultBlock:^(NSData *finallData, NSData *tempData) {
+            finallImageData = finallData;
+            canCompressMinData = tempData;
+        }];
+    }
+    //如果分辨率已经无法再降低，则直接使用能够压缩的那个最小值即可
+    if (finallImageData.length==0) {
+        finallImageData = canCompressMinData;
+    }
+    return finallImageData;
+}
+
+- (UIImage *)wq_imageWithTintColor:(UIColor *)tintColor {
+    return [self wq_imageWithTintColor:tintColor
+                             blendMode:kCGBlendModeDestinationIn];
+}
+
+- (UIImage *)wq_imageWithGradientTintColor:(UIColor *)tintColor {
+    return [self wq_imageWithTintColor:tintColor
+                             blendMode:kCGBlendModeOverlay];
+}
+
+- (UIImage *)wq_scaleToSize:(CGSize)size {
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    // 绘制改变大小的图片
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return scaledImage;
+}
+
+- (UIImage *)wq_ratioHeightWithWidth:(CGFloat)width {
+    CGFloat fixHeight = self.size.height*width/self.size.width;
+    return [self wq_scaleToSize:CGSizeMake(width, fixHeight)];
+}
+
+- (UIImage *)wq_ratioWidthWithHeight:(CGFloat)height {
+    CGFloat fixWidth = self.size.width*height/self.size.height;
+    return [self wq_scaleToSize:CGSizeMake(fixWidth, height)];
+}
+
+- (UIImage *)wq_insertImage:(UIImage *)image
+                       rect:(CGRect)rect {
+    UIGraphicsBeginImageContext(self.size);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    //四个参数为水印图片的位置
+    [image drawInRect:rect];
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resultingImage;
 }
 
 
@@ -202,5 +261,63 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
     return resultUIImage;
+}
+
+- (UIImage *)newSizeImage:(CGSize)size
+                    image:(UIImage *)sourceImage {
+    // 调整图片分辨率/尺寸（等比例缩放）
+    CGSize newSize = CGSizeMake(sourceImage.size.width, sourceImage.size.height);
+    CGFloat tempHeight = newSize.height / size.height;
+    CGFloat tempWidth = newSize.width / size.width;
+    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
+    } else if (tempHeight > 1.0 && tempWidth < tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);
+    }
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 1);
+    [sourceImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+- (void)halfFuntion:(NSArray *)arr
+              image:(UIImage *)image
+         sourceData:(NSData *)finallImageData
+            maxSize:(NSInteger)maxSize
+        resultBlock:(void(^)(NSData *finallData, NSData *tempData))block {
+    // 二分法，block回调中finallData长度不为零表示最终压缩到了指定的大小，如果为零则表示压缩不到指定大小。tempData表示当前能够压缩到的最小值。
+    NSData *tempData = [NSData data];
+    NSUInteger start = 0;
+    NSUInteger end = arr.count - 1;
+    NSUInteger index = 0;
+    NSUInteger difference = NSIntegerMax;
+    while(start <= end) {
+        index = start + (end - start)/2;
+        finallImageData = UIImageJPEGRepresentation(image,[arr[index] floatValue]);
+        NSUInteger sizeOrigin = finallImageData.length;
+        NSUInteger sizeOriginKB = sizeOrigin / 1024;
+        if (sizeOriginKB > maxSize) {
+            start = index + 1;
+        } else if (sizeOriginKB < maxSize) {
+            if (maxSize-sizeOriginKB < difference) {
+                difference = maxSize-sizeOriginKB;
+                tempData = finallImageData;
+            }
+            if (index<=0) {
+                break;
+            }
+            end = index - 1;
+        } else {
+            break;
+        }
+    }
+    NSData *d = [NSData data];
+    if (tempData.length==0) {
+        d = finallImageData;
+    }
+    if (block) {
+        block(tempData, d);
+    }
 }
 @end

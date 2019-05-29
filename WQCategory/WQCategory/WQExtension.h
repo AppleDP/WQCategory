@@ -10,6 +10,8 @@
 #define WQExtension_h
 
 #ifdef __OBJC__
+// 常用宏
+#import "WQMacro.h"
 // 字符串扩展
 #import "NSString+WQExtension.h"
 // 视图扩展
@@ -24,6 +26,8 @@
 #import "NSObject+WQExtension.h"
 // 颜色扩展
 #import "UIColor+WQExtension.h"
+// 设备扩展
+#import "UIDevice+WQExtension.h"
 // 通知扩展
 #import "NSNotificationCenter+WQExtension.h"
 #endif
