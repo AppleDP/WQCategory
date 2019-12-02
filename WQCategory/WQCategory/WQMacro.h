@@ -68,8 +68,16 @@ return MAXFLOAT; \
 }
 #endif
 
-/** iPhone X 后续系列（添加安全区） */
-#define kWQ_IPHONE_X_FOLLOW ({BOOL isPhoneX = NO;if (@available(iOS 11.0, *)) {isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;}(isPhoneX);})
+/**
+ * 是否存在安全区（iPhoneX 后添加安全区概念）
+ */
+NS_INLINE BOOL wq_hasSafeArea() {
+    BOOL safeArea = NO;
+    if (@available(iOS 11.0, *)) {
+        safeArea = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;
+    };
+    return safeArea;
+}
 
 /**
  * 主线程执行 block

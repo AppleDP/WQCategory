@@ -91,4 +91,12 @@
 - (CGSize)wq_size {
     return self.frame.size;
 }
+
+- (UIImage *)wq_covertToImage {
+    UIGraphicsBeginImageContext(self.bounds.size);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 @end

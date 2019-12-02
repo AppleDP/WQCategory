@@ -46,18 +46,18 @@
 }
 
 - (NSString *)wq_base64Encode {
-    //1.先把字符串转换为二进制数据
+    // 1.先把字符串转换为二进制数据
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     
-    //2.对二进制数据进行base64编码，返回编码后的字符串
+    // 2.对二进制数据进行base64编码，返回编码后的字符串
     return [data base64EncodedStringWithOptions:0];
 }
 
 - (NSString *)wq_base64Decode {
-    //1.将base64编码后的字符串『解码』为二进制数据
+    // 1.将base64编码后的字符串『解码』为二进制数据
     NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:0];
     
-    //2.把二进制数据转换为字符串返回
+    // 2.把二进制数据转换为字符串返回
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 

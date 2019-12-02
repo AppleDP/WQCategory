@@ -30,6 +30,10 @@
 #import "UIDevice+WQExtension.h"
 // 通知扩展
 #import "NSNotificationCenter+WQExtension.h"
+// Layer 扩展
+#import "CALayer+WQLayer.h"
+// ScrollView
+#import "UIScrollView+WQExtension.h"
 #endif
 
 #endif /* WQExtension_h */

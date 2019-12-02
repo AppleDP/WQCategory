@@ -9,23 +9,61 @@
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-    is_iPhone_4 = 1,
-    is_iPhone_5SE = 1 << 1,
-    is_iPhone_678 = 1 << 2,
-    is_iPhone_678P = 1 << 3,
-    is_iPhone_X = 1 << 3,
-    is_iPhone_Xr = 1 << 3,
-    is_iPhone_Xs_Max = 1 << 3,
-} WQiPhone;
+    iPhone4,
+    iPhone4s,
+    iPhone5,
+    iPhone5c,
+    iPhone5s,
+    iPhone6,
+    iPhone6P,
+    iPhone6s,
+    iPhone6sP,
+    iPhoneSE,
+    iPhone7,
+    iPhone7P,
+    iPhone7s,
+    iPhone7sP,
+    iPhone8,
+    iPhone8P,
+    iPhoneX,
+    iPhoneXS,
+    iPhoneXSMax,
+    iPhoneXR,
+    iPhone11,
+    iPhone11Pro,
+    iPhone11ProMax,
+    iPodTouch,
+    iPodTouch2G,
+    iPodTouch3G,
+    iPodTouch4G,
+    iPodTouch5G,
+    iPodTouch6G,
+    iPad,
+    iPad3G,
+    iPad2,
+    iPad3,
+    iPad4,
+    iPadAir,
+    iPadAir2,
+    iPadPro12_9Inch,
+    iPadPro9_7Inch,
+    iPad5,
+    iPadPro12_9Inch2,
+    iPadPro10_5Inch,
+    iPadMini,
+    iPadMini2,
+    iPadMini3,
+    iPadMini4,
+    Simulator,
+    Unknown, // 不明类型
+} WQPhoneModel; // 机型
 
 NS_ASSUME_NONNULL_BEGIN
 @interface UIDevice (WQExtension)
 /**
- * 判断当前 iPhone 机型
- *
- * @param myPhone 判断机型
+ * iPhone 机型
  */
-+ (BOOL)wq_determinMyiPhone:(WQiPhone)myPhone;
++ (WQPhoneModel)wq_myPhoneModel;
 
 /**
  * 获取当前网络 ip 地址

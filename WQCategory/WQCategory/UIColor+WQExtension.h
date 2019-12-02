@@ -27,20 +27,20 @@ NS_INLINE UIColor* wq_colorWithHex(NSInteger hex, CGFloat alpha) {
  * @pragma r 红 [0, 255]
  * @pragma g 绿 [0, 255]
  * @pragma b 蓝 [0, 255]
- * @pragma a 透明度 [0, 255]
+ * @pragma a 透明度 [0, 100]
  */
 NS_INLINE UIColor* wq_colorWithRGB(int r, int g, int b, int a) {
     return [UIColor colorWithRed:r/255.0f
                            green:g/255.0f
                             blue:b/255.0f
-                           alpha:a/255.0f];
+                           alpha:a/100.0f];
 }
 /**
  * Hsb 颜色
  *
- * @pragma h 红 [0, 360]
- * @pragma s 绿 [0, 100]
- * @pragma b 蓝 [0, 100]
+ * @pragma h 色调 [0, 360]
+ * @pragma s 饱合度 [0, 100]
+ * @pragma b 爆光度 [0, 100]
  * @pragma a 透明度 [0, 255]
  */
 NS_INLINE UIColor* wq_colorWithHsb(int h, int s, int b, int a) {

@@ -22,5 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat wq_width;
 @property (nonatomic, assign) CGFloat wq_height;
 @property (nonatomic, assign) CGSize wq_size;
+
+/**
+ * 将 View 转成 image
+ */
+- (UIImage *)wq_covertToImage;
 @end
 NS_ASSUME_NONNULL_END

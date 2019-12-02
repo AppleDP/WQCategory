@@ -18,6 +18,7 @@
 		8108EC82205FE5A800062BAB /* NSString+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8108EC81205FE5A800062BAB /* NSString+WQExtension.m */; };
 		8108EC85205FE60900062BAB /* UIView+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8108EC84205FE60900062BAB /* UIView+WQExtension.m */; };
 		8108EC88205FE68B00062BAB /* UILabel+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8108EC87205FE68B00062BAB /* UILabel+WQExtension.m */; };
+		811B644E239494D80087FE38 /* UIScrollView+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 811B644D239494D80087FE38 /* UIScrollView+WQExtension.m */; };
 		811E2A8C2237818A00D38CB4 /* NSNotificationCenter+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 811E2A8B2237818A00D38CB4 /* NSNotificationCenter+WQExtension.m */; };
 		8120484820D34C3B001CAD17 /* WQObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8120484720D34C3B001CAD17 /* WQObject.mm */; };
 		8124B78E21E833AF00EEC8B2 /* UIDevice+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8124B78D21E833AF00EEC8B2 /* UIDevice+WQExtension.m */; };
@@ -25,6 +26,7 @@
 		81DDD471207C4E91005DEFDC /* NSData+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DDD470207C4E91005DEFDC /* NSData+WQExtension.m */; };
 		81DDD474207C5C09005DEFDC /* UIImage+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DDD473207C5C09005DEFDC /* UIImage+WQExtension.m */; };
 		81F4D53521E740890094FE85 /* UIColor+WQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F4D53421E740890094FE85 /* UIColor+WQExtension.m */; };
+		81FF8453238F50B3001641A3 /* CALayer+WQLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF8452238F50B3001641A3 /* CALayer+WQLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		8108EC84205FE60900062BAB /* UIView+WQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WQExtension.m"; sourceTree = "<group>"; };
 		8108EC86205FE68B00062BAB /* UILabel+WQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WQExtension.h"; sourceTree = "<group>"; };
 		8108EC87205FE68B00062BAB /* UILabel+WQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WQExtension.m"; sourceTree = "<group>"; };
+		811B644C239494D80087FE38 /* UIScrollView+WQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+WQExtension.h"; sourceTree = "<group>"; };
+		811B644D239494D80087FE38 /* UIScrollView+WQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+WQExtension.m"; sourceTree = "<group>"; };
 		811E2A8A2237818A00D38CB4 /* NSNotificationCenter+WQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+WQExtension.h"; sourceTree = "<group>"; };
 		811E2A8B2237818A00D38CB4 /* NSNotificationCenter+WQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+WQExtension.m"; sourceTree = "<group>"; };
 		8120484620D34C3B001CAD17 /* WQObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WQObject.h; sourceTree = "<group>"; };
@@ -76,12 +80,15 @@
 		81797ABD20B399C100EC8DA9 /* NSObject+WQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+WQExtension.h"; sourceTree = "<group>"; };
 		81797ABE20B399C100EC8DA9 /* NSObject+WQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WQExtension.m"; sourceTree = "<group>"; };
 		81797AC020B39A8800EC8DA9 /* WQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WQExtension.h; sourceTree = "<group>"; };
+		81A95EEF227FD4EE00E105DB /* WQMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WQMacro.h; sourceTree = "<group>"; };
 		81DDD46F207C4E91005DEFDC /* NSData+WQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+WQExtension.h"; sourceTree = "<group>"; };
 		81DDD470207C4E91005DEFDC /* NSData+WQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+WQExtension.m"; sourceTree = "<group>"; };
 		81DDD472207C5C09005DEFDC /* UIImage+WQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WQExtension.h"; sourceTree = "<group>"; };
 		81DDD473207C5C09005DEFDC /* UIImage+WQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WQExtension.m"; sourceTree = "<group>"; };
 		81F4D53321E740880094FE85 /* UIColor+WQExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+WQExtension.h"; sourceTree = "<group>"; };
 		81F4D53421E740890094FE85 /* UIColor+WQExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WQExtension.m"; sourceTree = "<group>"; };
+		81FF8451238F50B3001641A3 /* CALayer+WQLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+WQLayer.h"; sourceTree = "<group>"; };
+		81FF8452238F50B3001641A3 /* CALayer+WQLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+WQLayer.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				81797AC020B39A8800EC8DA9 /* WQExtension.h */,
+				81A95EEF227FD4EE00E105DB /* WQMacro.h */,
 				8108EC80205FE5A800062BAB /* NSString+WQExtension.h */,
 				8108EC81205FE5A800062BAB /* NSString+WQExtension.m */,
 				8108EC83205FE60900062BAB /* UIView+WQExtension.h */,
@@ -204,6 +212,10 @@
 				8124B78D21E833AF00EEC8B2 /* UIDevice+WQExtension.m */,
 				811E2A8A2237818A00D38CB4 /* NSNotificationCenter+WQExtension.h */,
 				811E2A8B2237818A00D38CB4 /* NSNotificationCenter+WQExtension.m */,
+				81FF8451238F50B3001641A3 /* CALayer+WQLayer.h */,
+				81FF8452238F50B3001641A3 /* CALayer+WQLayer.m */,
+				811B644C239494D80087FE38 /* UIScrollView+WQExtension.h */,
+				811B644D239494D80087FE38 /* UIScrollView+WQExtension.m */,
 			);
 			path = WQCategory;
 			sourceTree = "<group>";
@@ -298,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -349,11 +362,13 @@
 				8108EC4C205FE4E400062BAB /* ViewController.m in Sources */,
 				81DDD474207C5C09005DEFDC /* UIImage+WQExtension.m in Sources */,
 				8124B78E21E833AF00EEC8B2 /* UIDevice+WQExtension.m in Sources */,
+				811B644E239494D80087FE38 /* UIScrollView+WQExtension.m in Sources */,
 				8108EC82205FE5A800062BAB /* NSString+WQExtension.m in Sources */,
 				81F4D53521E740890094FE85 /* UIColor+WQExtension.m in Sources */,
 				8108EC88205FE68B00062BAB /* UILabel+WQExtension.m in Sources */,
 				8108EC49205FE4E400062BAB /* AppDelegate.m in Sources */,
 				8108EC46205FE4E400062BAB /* main.m in Sources */,
+				81FF8453238F50B3001641A3 /* CALayer+WQLayer.m in Sources */,
 				81DDD471207C4E91005DEFDC /* NSData+WQExtension.m in Sources */,
 				811E2A8C2237818A00D38CB4 /* NSNotificationCenter+WQExtension.m in Sources */,
 				81797ABF20B399C100EC8DA9 /* NSObject+WQExtension.m in Sources */,
