@@ -10,7 +10,8 @@
 
 @implementation UIScrollView (WQExtension)
 - (NSData *)wq_createPdf {
-    NSMutableData*pdfData=[NSMutableData data];
+    // 重写生成 PDF 
+    NSMutableData *pdfData = [NSMutableData data];
     UIGraphicsBeginPDFContextToData(pdfData,(CGRect){0,0,self.contentSize},nil);
     UIGraphicsBeginPDFPageWithInfo(CGRectMake(0,0,self.contentSize.width,self.contentSize.height),nil);
     CGContextRef pdfContext = UIGraphicsGetCurrentContext();

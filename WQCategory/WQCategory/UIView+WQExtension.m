@@ -99,4 +99,19 @@
     UIGraphicsEndImageContext();
     return image;
 }
+
+- (NSData *)wq_createPdf {
+    NSMutableData *pdfData = [NSMutableData data];
+    UIGraphicsBeginPDFContextToData(pdfData,(CGRect){0,0,self.wq_size},nil);
+    UIGraphicsBeginPDFPageWithInfo(CGRectMake(0,0,self.wq_width,self.wq_height),nil);
+    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+    CGRect origSize = self.frame;
+    CGRect newSize = origSize;
+    newSize.size = self.wq_size;
+    [self setFrame:newSize];
+    [self.layer renderInContext:pdfContext];
+    [self setFrame:origSize];
+    UIGraphicsEndPDFContext();
+    return [pdfData copy];
+}
 @end

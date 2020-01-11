@@ -27,5 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
  * 将 View 转成 image
  */
 - (UIImage *)wq_covertToImage;
+
+/**
+ * View 生成 PDF
+ */
+- (NSData *)wq_createPdf;
 @end
 NS_ASSUME_NONNULL_END

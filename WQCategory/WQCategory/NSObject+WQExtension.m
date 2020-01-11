@@ -53,9 +53,9 @@
         id returnValue;
         
         //如果没有返回值，也就是消息声明为void，那么returnValue=nil
-        if( !strcmp(returnType, @encode(void)) ){
+        if(!strcmp(returnType, @encode(void))){
             returnValue =  nil;
-        }else if( !strcmp(returnType, @encode(id)) ){
+        }else if(!strcmp(returnType, @encode(id)) ){
             //如果返回值为对象，那么为变量赋值
             [invocation getReturnValue:&returnValue];
         }else{
@@ -68,15 +68,15 @@
             
             //为变量赋值
             [invocation getReturnValue:buffer];
-            if (strcmp(returnType, @encode(void))  == 0) {
+            if (strcmp(returnType, @encode(void)) == 0) {
                 returnValue = nil;
-            }else if (strcmp(returnType, @encode(int))  == 0) {
+            }else if (strcmp(returnType, @encode(int)) == 0) {
                 returnValue = [NSNumber numberWithInt:*((int *)buffer)];
-            }else if (strcmp(returnType, @encode(unsigned int))  == 0) {
+            }else if (strcmp(returnType, @encode(unsigned int)) == 0) {
                 returnValue = [NSNumber numberWithUnsignedInt:*((unsigned int *)buffer)];
             }else if (strcmp(returnType, @encode(float)) == 0) {
                 returnValue = [NSNumber numberWithFloat:*((float *)buffer)];
-            }else if (strcmp(returnType, @encode(double))  == 0) {
+            }else if (strcmp(returnType, @encode(double)) == 0) {
                 returnValue = [NSNumber numberWithDouble:*((double *)buffer)];
             }else if (strcmp(returnType, @encode(BOOL)) == 0) {
                 returnValue = [NSNumber numberWithBool:*((BOOL *)buffer)];

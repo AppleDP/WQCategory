@@ -10,9 +10,5 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface UIScrollView (WQExtension)
-/**
- * ScrollView 生成 PDF
- */
-- (NSData *)wq_createPdf;
 @end
 NS_ASSUME_NONNULL_END

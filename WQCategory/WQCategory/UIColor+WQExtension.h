@@ -21,6 +21,7 @@ NS_INLINE UIColor* wq_colorWithHex(NSInteger hex, CGFloat alpha) {
                             blue:(((hex)&0xFF)/255.0f)
                            alpha:alpha];
 }
+
 /**
  *  rgb 颜色
  *
@@ -35,6 +36,7 @@ NS_INLINE UIColor* wq_colorWithRGB(int r, int g, int b, int a) {
                             blue:b/255.0f
                            alpha:a/100.0f];
 }
+
 /**
  * Hsb 颜色
  *

@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param size      二维码、条形码大小
  *  @param color     二维码、条形码颜色
  *  @param watermark 二维码、条形码水印图
- *  @param rect      水印图在二维码、条形码中的位置（在 watermark != nil 时可有效）
+ *  @param rect      水印图在二维码、条形码中的位置（在 watermark != nil 时有效）
  *
  *  @return 二维码、条形码图片
  */

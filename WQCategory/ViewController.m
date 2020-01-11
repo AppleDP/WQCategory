@@ -8,29 +8,28 @@
 
 #import "ViewController.h"
 #import "WQExtension.h"
-#import "WQObject.h"
 
 @interface ViewController ()
-
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *str = [[NSString alloc] init];
-    NSString *str0 = [[NSString alloc] init];
-    NSLog(@"str: %@ -- str0: %@ -- str: %@", str, str0, str.class);
-    if ([str isEqualToString:str0]) {
-        NSLog(@"相等");
-    }else {
-        NSLog(@"不等");
-    }
-    WQObject *object = [[WQObject alloc] init];
-    int i = 0;
-    NSNumber *j = @(1);
-    [object wq_performSelector:@selector(func0:j:) arguments:&i, &j, nil];
+    UIButton *lab = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [lab setTitle:@"100" forState:UIControlStateNormal];
+    lab.frame = CGRectMake(100, 100, 100, 100);
+    lab.backgroundColor = [UIColor redColor];
+    [lab.layer wq_sketchLayerShadow:[UIColor blackColor] alpha:20 offsetX:0 offsetY:0 blur:100 spread:100];
+    [lab addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:lab];
+}
 
-//    func(10, 20);
+- (void)click:(UIButton *)sender {
+    CAShapeLayer *shape = [CAShapeLayer new];
+    shape.frame = sender.bounds;
+    [shape wq_cornerRadius:50 type:UIRectCornerAllCorners];
+    [shape wq_sketchLayerShadow:[UIColor blackColor] alpha:20 offsetX:0 offsetY:0 blur:100 spread:100];
+    sender.layer.mask = shape;
 }
 @end

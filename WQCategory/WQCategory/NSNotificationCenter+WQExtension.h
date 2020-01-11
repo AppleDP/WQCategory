@@ -24,6 +24,21 @@ NS_INLINE void wq_notiObserver(id observer, SEL sel, NSString * _Nullable key, i
                                                object:anObject];
 }
 /**
+ * 添加通知监听
+ *
+ * @pragma observer 监听者
+ * @pragma key 监听 key
+ * @pragma anObject 其它对象
+ * @pragma queue 回调线程
+ * @pragma block 回调
+ */
+NS_INLINE void wq_notiObserver1(id observer, NSString * _Nullable key, id _Nullable anObject, NSOperationQueue *queue, void (^block)(NSNotification *note)) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:key
+                                                      object:observer
+                                                       queue:queue
+                                                  usingBlock:block];
+}
+/**
  * 发送通知
  *
  * @pragma key 通知 key
